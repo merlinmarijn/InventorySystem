@@ -27,8 +27,33 @@ public class ItemLibrary : MonoBehaviour
         return ItemCollection[itemID];
     }
 
+    public Item getItemByIndex(int Index)
+    {
+        return ItemCollection[Index];
+    }
+
     public List<Item> getItemCollection()
     {
         return ItemCollection;
+    }
+
+    public int GetCollectionCount()
+    {
+        return ItemCollection.Count;
+    }
+
+    public void AddToCollection(Item item)
+    {
+        ItemCollection.Add(item);
+    }
+
+    public int GetLastIndex()
+    {
+        return ItemCollection.Count - 1;
+    }
+
+    public void RemoveLast()
+    {
+        ItemCollection.RemoveAt(ItemCollection.Count-1);
     }
 }

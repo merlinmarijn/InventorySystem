@@ -8,5 +8,5 @@ public class Item : ScriptableObject
     public int itemID;
     public string itemName;
     public string itemDescription;
-    public int itemCount;
+    public int itemCount = 1;
 }
