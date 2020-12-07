@@ -149,6 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a54b5aafbe4b0f4496576732b5fb6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemCollection:
+  - {fileID: 11400000, guid: 06c215888cd32a84b8c272d9c197de3d, type: 2}
+  - {fileID: 11400000, guid: 41ec5276dc65dcb40b3b52a7ef1796c3, type: 2}
+  - {fileID: 11400000, guid: f3056aef48657664d9f17f0b7bbce38c, type: 2}
+  - {fileID: 11400000, guid: a1bd08a7e5e2f5646a4deee0c90d959f, type: 2}
+  - {fileID: 11400000, guid: b3b39678d6d70a040bf8892808163230, type: 2}
 --- !u!4 &128324853
 Transform:
   m_ObjectHideFlags: 0
@@ -402,7 +408,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 3.38e-42, w: 6e-44}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

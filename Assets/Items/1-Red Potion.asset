@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9d682b43e621b1408e108a37ad6ea2f, type: 3}
-  m_Name: Red Potion
+  m_Name: 1-Red Potion
   m_EditorClassIdentifier: 
-  itemID: 0
-  itemName: 
-  itemDescription: 
-  itemCount: 0
+  itemID: 1
+  itemName: Red Potion
+  itemDescription: A red potion that heals you
+  itemCount: 1
