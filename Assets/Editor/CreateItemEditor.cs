@@ -17,6 +17,10 @@ public class CreateItemEditor : Editor
     private ItemType IT;
     private RestoreType RT;
     private int RestorePoints;
+    public enum EquipmentSlot { Helm, Chestplate, Legs, Boots, Gloves, Weapon,Offhand, Cape, Amulet, Ring, Quiver }
+    public EquipmentSlot equipmentslot;
+    public int damage;
+    public int defense;
 
     public override void OnInspectorGUI()
     {
@@ -42,6 +46,15 @@ public class CreateItemEditor : Editor
             case ItemType.Equipment:
             EditorGUILayout.LabelField("Equipment variables:");
                 //PUT STUFF HERE
+                if (equipmentslot == EquipmentSlot.Weapon || equipmentslot == EquipmentSlot.Quiver)
+                {
+                    damage = EditorGUILayout.IntField("Damage Points", damage);
+                }
+                else
+                {
+                    defense = EditorGUILayout.IntField("Defense Points", defense);
+                }
+                equipmentslot = (EquipmentSlot)EditorGUILayout.EnumPopup("Equipment Slot", equipmentslot);
                 break;
 
             case ItemType.Material:
@@ -81,10 +94,25 @@ public class CreateItemEditor : Editor
         switch (IT)
         {
             case ItemType.Consumable:
+                type.itemtype = Item.ItemType.Consumable;
+                switch (RT)
+                {
+                    case RestoreType.Health:
+                        type.restoretype = Item.RestoreType.Health;
+                        break;
+                    case RestoreType.Mana:
+                        type.restoretype = Item.RestoreType.Mana;
+                        break;
+                }
+                type.RestorePoints = EditorGUILayout.IntField("Restores", RestorePoints);
                 break;
             case ItemType.Equipment:
+                type.itemtype = Item.ItemType.Equipment;
+                type.isWeapon = true;
+                if (equipmentslot==EquipmentSlot.Weapon || equipmentslot==EquipmentSlot.Quiver) { type.Damage = damage; } else { type.Defense = defense; }
                 break;
             case ItemType.Material:
+                type.itemtype = Item.ItemType.Material;
                 break;
         }
         IL.AddToCollection(type);

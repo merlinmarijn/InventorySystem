@@ -25,6 +25,15 @@ public class ItemEditor : Editor
                 item.RestorePoints = EditorGUILayout.IntField("Restores ", item.RestorePoints);
                 break;
             case Item.ItemType.Equipment:
+                item.equipmentslot = (Item.EquipmentSlot)EditorGUILayout.EnumPopup("Equipment Slot", item.equipmentslot);
+                if (item.isWeapon)
+                {
+                    item.Damage = EditorGUILayout.IntField("Damage Points", item.Damage);
+                }
+                else
+                {
+                    item.Defense = EditorGUILayout.IntField("Defense Points", item.Defense);
+                }
                 break;
             case Item.ItemType.Material:
                 break;
