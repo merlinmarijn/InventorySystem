@@ -9,4 +9,12 @@ public class Item : ScriptableObject
     public string itemName;
     public string itemDescription;
     public int itemCount = 1;
+    public enum ItemType { Consumable, Equipment, Material }
+    public ItemType itemtype;
+
+
+    //If consumable
+    public enum RestoreType { Health, Mana }
+    public RestoreType restoretype;
+    public int RestorePoints;
 }

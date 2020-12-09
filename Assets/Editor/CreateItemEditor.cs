@@ -38,10 +38,12 @@ public class CreateItemEditor : Editor
             RestorePoints = EditorGUILayout.IntField("Restores points", RestorePoints);
             RT = (RestoreType)EditorGUILayout.EnumPopup("Restore Type", RT);
             break;
+
             case ItemType.Equipment:
             EditorGUILayout.LabelField("Equipment variables:");
                 //PUT STUFF HERE
                 break;
+
             case ItemType.Material:
             EditorGUILayout.LabelField("Material variables:");
                 //PUT STUFF HERE
@@ -76,6 +78,15 @@ public class CreateItemEditor : Editor
         type.itemName = Name;
         type.itemDescription = Description;
         type.itemCount = 1;
+        switch (IT)
+        {
+            case ItemType.Consumable:
+                break;
+            case ItemType.Equipment:
+                break;
+            case ItemType.Material:
+                break;
+        }
         IL.AddToCollection(type);
         EditorUtility.FocusProjectWindow();
         if (FocusOnCreation) { Selection.activeObject = type; }
