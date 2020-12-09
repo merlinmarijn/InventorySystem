@@ -8,20 +8,51 @@ public class CreateItemEditor : Editor
 {
 
 
-    public ItemLibrary IL;
-    public string Name;
-    public string Description;
+    private ItemLibrary IL;
+    private string Name;
+    private string Description;
     private bool FocusOnCreation;
-
+    private enum ItemType { Consumable, Equipment, Material }
+    private enum RestoreType { Health, Mana }
+    private ItemType IT;
+    private RestoreType RT;
+    private int RestorePoints;
 
     public override void OnInspectorGUI()
     {
+        //Enumerator that tells me what type of item im going to make
+        IT = (ItemType)EditorGUILayout.EnumPopup("Type of item", IT);
         IL = (ItemLibrary)target;
+        EditorGUILayout.Space();
+        //Set Basic variables that EVERY ITEM NEEDS
+        EditorGUILayout.LabelField("Basic variables:");
         Name = EditorGUILayout.TextField("Name", Name);
         Description = EditorGUILayout.TextField("Description", Description);
+        EditorGUILayout.Space();
+
+        //Set variables for every CONSUMEABLE ITEM
+        switch (IT)
+        {
+            case ItemType.Consumable:
+            EditorGUILayout.LabelField("Consumable variables:");
+            RestorePoints = EditorGUILayout.IntField("Restores points", RestorePoints);
+            RT = (RestoreType)EditorGUILayout.EnumPopup("Restore Type", RT);
+            break;
+            case ItemType.Equipment:
+            EditorGUILayout.LabelField("Equipment variables:");
+                //PUT STUFF HERE
+                break;
+            case ItemType.Material:
+            EditorGUILayout.LabelField("Material variables:");
+                //PUT STUFF HERE
+                break;
+        }
+
+        EditorGUILayout.Space();
+        //Set input fields for creating/deleteing/focusing
         FocusOnCreation = EditorGUILayout.Toggle("Focus on Creation", FocusOnCreation);
         EditorGUILayout.BeginHorizontal();
-        if(GUILayout.Button("Generate Item"))
+        if (GUILayout.Button("Generate Item"))
         {
             CreateItem(new Item());
         }
@@ -38,7 +69,7 @@ public class CreateItemEditor : Editor
 
     private void CreateItem(Item type)
     {
-        Debug.Log(IL);
+        //Debug.Log(IL);
         AssetDatabase.CreateAsset(type, "Assets/Items/" + IL.GetCollectionCount()+"-"+Name + type.name.Replace(" ", "") + ".asset");
         AssetDatabase.SaveAssets();
         type.itemID = IL.GetCollectionCount();
