@@ -7,6 +7,8 @@ public class ItemCreator : EditorWindow
 {
 
     private ItemLibrary IL;
+
+
     private string Name;
     private string Description;
     private bool FocusOnCreation;
@@ -81,6 +83,10 @@ public class ItemCreator : EditorWindow
             RemoveLast();
         }
         EditorGUILayout.EndHorizontal();
+        if(GUILayout.Button("Focus Library"))
+        {
+            Selection.activeGameObject = GameObject.FindGameObjectWithTag("bgSystem").gameObject;
+        }
         EditorGUILayout.Space();
         //base.OnInspectorGUI();
     }
@@ -111,7 +117,7 @@ public class ItemCreator : EditorWindow
                 break;
             case ItemType.Equipment:
                 type.itemtype = Item.ItemType.Equipment;
-                type.isWeapon = true;
+                if (type.equipmentslot == Item.EquipmentSlot.Weapon || type.equipmentslot == Item.EquipmentSlot.Quiver) { type.isWeapon = true; }
                 if (equipmentslot == EquipmentSlot.Weapon || equipmentslot == EquipmentSlot.Quiver) { type.Damage = damage; } else { type.Defense = defense; }
                 break;
             case ItemType.Material:
